@@ -12,9 +12,10 @@
                         <input type="email" class="form-control my-4" id="email" aria-describedby="emailHelp" placeholder="Email" v-model="email">
                         <input type="password" class="form-control my-4" id="password" aria-describedby="emailHelp" placeholder="Contraseña" v-model="password">
                     </div>
-                    <button type="button" class="btn btn-primary btn-lg btn-block" v-on:click="onClick">Enviar</button>
                 </div>
-               
+               <div>
+                    <button type="button" class="btn btn-primary btn-lg btn-block mt-4" v-on:click="onClick">Enviar</button>
+               </div>
             </div>
         </div>
     </div>
@@ -53,6 +54,7 @@ export default {
                 }
                 window.localStorage.setItem('token', data.token);
                 window.localStorage.setItem('userId', data.userId);
+                window.localStorage.setItem('admin', data.admin);
                 this.$router.push('/users');
 
             }catch(err){

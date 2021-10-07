@@ -1,6 +1,11 @@
 <template>
     <div class="chat">
         <div class="container-message">
+            <div class="row mt-3 ">
+                <div class="col-md-6 offset-3">
+                    <button type="button" class="btn btn-secondary" v-on:click="comeBack()">Volver</button>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-6 offset-md-3 my-4">
                     <div class="message" v-for="message in messages" :key="message._id">
@@ -8,7 +13,7 @@
                         <p v-else class="text-left my-4 text-success">{{ message.text }}</p>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="message"></textarea>
+                        <textarea class="form-control" id="textarea" rows="3" v-model="message"></textarea>
                         <div class="text-right mt-4">
                             <button type="button" class="btn btn-info" v-on:click="sendMessage">Enviar</button>
                         </div>
@@ -40,6 +45,9 @@ export default {
         await this.getMessages(token);
     },
     methods:{
+        comeBack(){
+            this.$router.push('/users');
+        },
         async sendMessage(){
             try{
                 const token = window.localStorage.getItem('token');
@@ -67,6 +75,7 @@ export default {
                     this.messages = [];
                     await this.getMessages(token);
                 }
+                
             }catch(err){
                 alert(err);
             }
